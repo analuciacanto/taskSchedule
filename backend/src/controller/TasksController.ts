@@ -6,7 +6,7 @@ const tasksRepository = AppDataSource.getRepository(Tasks)
 
 export const getTasks = async (request: Request, response: Response) => {
     const tasks = await tasksRepository.find();
-    return response.json(tasks);
+    return response.send(tasks);
 }   
 
 export const getTask = async (request: Request, response: Response) => {

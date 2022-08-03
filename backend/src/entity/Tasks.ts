@@ -13,15 +13,15 @@ export class Tasks {
     description: string
 
     @Column()
-    start_date: Date
+    startDate: Date
 
     @Column()
-    end_date: Date
+    endDate: Date
 
     @CreateDateColumn()
-    created_at: Date
+    createdAt: Date
 
     @UpdateDateColumn()
-    updated_at: Date
+    updatedAt: Date
 
 }

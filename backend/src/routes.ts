@@ -3,7 +3,7 @@ import {getTasks, saveTask, getTask, updateTask, removeTask} from './controller/
 const routes = Router()
 
 routes.get('/', (request: Request, response: Response) => {
-    return response.json({message: 'Hello'})
+    return response.json({message: 'Bem vindo!'})
 
 });
 
