@@ -9,7 +9,8 @@ import {
   Toolbar,
   ViewSwitcher,
   MonthView,
-  DateNavigator
+  DateNavigator,
+  TodayButton
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 const TasksScheduler = (props) => {
@@ -24,24 +25,13 @@ const TasksScheduler = (props) => {
             defaultCurrentDate={props.currentDate}
             defaultCurrentViewName="Week"
             />
-            <DayView
-            startDayHour={7}
-            endDayHour={21}
-            />
-            <WeekView
-            startDayHour={7}
-            endDayHour={21}
-            />
-            <MonthView
-            startDayHour={7}
-            endDayHour={21}
-            />
-            <Toolbar             
-            />
-            <DateNavigator />
-            <ViewSwitcher 
-            />                     
-            <Appointments />
+            <DayView displayName="Dia"/>
+            <WeekView displayName="Semana"/>
+            <MonthView displayName="Mês"/>
+            <Toolbar/>
+            <DateNavigator/>
+            <ViewSwitcher/>                     
+            <Appointments onClick={props.onClick} />
           </Scheduler>);
 }
 export default TasksScheduler;
