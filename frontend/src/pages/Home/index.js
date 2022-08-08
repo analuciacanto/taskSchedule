@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
+import {Box, Alert, Snackbar } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import api from '../../api';
@@ -13,6 +13,7 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
   const [openCreateDialog, setOpenCreateDialog] = useState(false);
+  const [alert, setAlert] = useState(false);
   const currentDate = new Date();
 
   const [task, setTask] = useState({
@@ -32,6 +33,13 @@ function Home() {
         console.log(error);
       });
     setOpenCreateDialog(false);
+    setAlert(true);    
+    setTask({
+      title: '',
+      description: '',
+      startDate: new Date(),
+      endDate: new Date(),
+    });
   };
 
   const handleChange = (item, newValue) => {
@@ -79,16 +87,20 @@ function Home() {
                </Fab>
              </Box>
              )}
-      <FormDialog
-        handleSubmit={handleSubmit}
-        open={openCreateDialog}
-        handleClose={() => setOpenCreateDialog(false)}
-        title="Criar nova tarefa"
-      >
-        <TaskForm handleChange={handleChange} task={task} />
-      </FormDialog>
-    </Box>
-
+              <FormDialog
+                handleSubmit={handleSubmit}
+                open={openCreateDialog}
+                handleClose={() => setOpenCreateDialog(false)}
+                title="Criar nova tarefa"
+              >
+                <TaskForm handleChange={handleChange} task={task} />
+              </FormDialog>
+              <Snackbar open={alert} autoHideDuration={6000} onClose={() => setAlert(false)}>
+                    <Alert  onClose={() => setAlert(false)} severity="success" sx={{ width: '100%' }}>
+                              Tarefa criada com sucesso!         
+                    </Alert>
+                </Snackbar>                              
+            </Box>
   );
 }
 

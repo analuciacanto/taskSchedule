@@ -1,21 +1,21 @@
 import React from 'react'
-import { ViewState 
+import { ViewState , EditingState, IntegratedEditing
 } from '@devexpress/dx-react-scheduler';
 import {
   Scheduler,
   DayView,
-  Appointments,
   WeekView,
   Toolbar,
   ViewSwitcher,
   MonthView,
   DateNavigator,
-  TodayButton
+  AppointmentTooltip,
+  Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 const TasksScheduler = (props) => {
 
-    return( 
+  return( 
          <Scheduler
             data={props.data}
             currentDate={props.currentDate}
@@ -29,9 +29,14 @@ const TasksScheduler = (props) => {
             <WeekView displayName="Semana"/>
             <MonthView displayName="Mês"/>
             <Toolbar/>
+            <EditingState/>
+            <IntegratedEditing />
+            <Appointments/>
+            <AppointmentTooltip
+              showCloseButton
+          />   
             <DateNavigator/>
             <ViewSwitcher/>                     
-            <Appointments onClick={props.onClick} />
           </Scheduler>);
 }
 export default TasksScheduler;
