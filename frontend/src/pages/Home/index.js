@@ -23,29 +23,6 @@ function Home() {
     endDate: new Date(),
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    api.post('/tasks', task)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    setOpenCreateDialog(false);
-    setAlert(true);    
-    setTask({
-      title: '',
-      description: '',
-      startDate: new Date(),
-      endDate: new Date(),
-    });
-  };
-
-  const handleChange = (item, newValue) => {
-    setTask({ ...task, [item]: newValue });
-  };
-
   const getTasks = () => {
     setLoading(true);
     api.get('/tasks')
@@ -59,7 +36,31 @@ function Home() {
       });
   };
 
-  useEffect(() => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    api.post('/tasks', task)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setOpenCreateDialog(false);
+    getTasks();
+    setAlert(true);    
+    setTask({
+      title: '',
+      description: '',
+      startDate: new Date(),
+      endDate: new Date(),
+    });
+  };
+
+  const handleChange = (item, newValue) => {
+    setTask({ ...task, [item]: newValue });
+  };
+
+    useEffect(() => {
     getTasks();
   }, []);
 
@@ -94,12 +95,12 @@ function Home() {
                 title="Criar nova tarefa"
               >
                 <TaskForm handleChange={handleChange} task={task} />
-              </FormDialog>
-              <Snackbar open={alert} autoHideDuration={6000} onClose={() => setAlert(false)}>
-                    <Alert  onClose={() => setAlert(false)} severity="success" sx={{ width: '100%' }}>
-                              Tarefa criada com sucesso!         
-                    </Alert>
-                </Snackbar>                              
+                </FormDialog>
+                <Snackbar open={alert} autoHideDuration={6000} onClose={() => setAlert(false)}>
+                      <Alert  onClose={() => setAlert(false)} severity="success" sx={{ width: '100%' }}>
+                                Tarefa criada com sucesso!         
+                      </Alert>
+                  </Snackbar>                              
             </Box>
   );
 }
