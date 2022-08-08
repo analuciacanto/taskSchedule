@@ -1,6 +1,11 @@
 # Tasks Schedule
-Projeto para o desenvolvimento de uma agenda de tarefas. 
-Projeto desenvolvido usando Node JS e React JS 
+Projeto para o desenvolvimento de uma agenda de tarefas.  
+Projeto desenvolvido usando:  
+Node JS  
+React JS    
+[Biblioteca de componentes]( https://devexpress.github.io/devextreme-reactive/react/scheduler/)
+[TypeORM](https://typeorm.io/)
+[Material UI](https://mui.com/pt/)
 
 ## Clonando o repositório 
 
